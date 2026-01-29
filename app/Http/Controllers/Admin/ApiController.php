@@ -18,29 +18,35 @@ class ApiController extends Controller
             $filter = $request->input('filter', 'all');
             $query = Api::query();
 
+            $today = now()->startOfDay();
+
             switch ($filter) {
                 case 'added_today':
-                    $query->whereDate('created_at', now()->toDateString());
+                    $query->whereDate('created_at', $today->toDateString());
                     break;
                 case 'active':
+                    // Đang hoạt động: status = open VÀ (không có expiry HOẶC expiry >= today)
                     $query->where('status', 'open')
-                        ->where(function ($q) {
+                        ->where(function ($q) use ($today) {
                             $q->whereNull('expiry_datetime')
-                                ->orWhereDate('expiry_datetime', '>', now()->toDateString());
+                                ->orWhereDate('expiry_datetime', '>=', $today->toDateString());
                         });
                     break;
                 case 'expiring_today':
+                    // Hết hạn hôm nay: expiry_datetime = today
                     $query->whereNotNull('expiry_datetime')
-                        ->whereDate('expiry_datetime', now()->toDateString());
+                        ->whereDate('expiry_datetime', $today->toDateString());
                     break;
                 case 'expiring_2days':
+                    // Còn 2 ngày: expiry_datetime = tomorrow hoặc ngày sau (trong 1-2 ngày tới)
                     $query->whereNotNull('expiry_datetime')
-                        ->whereDate('expiry_datetime', '>', now()->toDateString())
-                        ->whereDate('expiry_datetime', '<=', now()->addDays(2)->toDateString());
+                        ->whereDate('expiry_datetime', '>', $today->toDateString())
+                        ->whereDate('expiry_datetime', '<=', $today->copy()->addDays(2)->toDateString());
                     break;
                 case 'expired':
+                    // Đã hết hạn: expiry_datetime < today
                     $query->whereNotNull('expiry_datetime')
-                        ->whereDate('expiry_datetime', '<', now()->toDateString());
+                        ->whereDate('expiry_datetime', '<', $today->toDateString());
                     break;
             }
 

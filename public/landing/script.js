@@ -88,14 +88,14 @@ function showMessage(message, type = 'success') {
 
 // Ẩn/hiện Zalo theo ngôn ngữ
 function updateZaloVisibility(lang) {
-    const zaloItem = document.getElementById('zaloItem');
-    if (zaloItem) {
+    const zaloItems = document.querySelectorAll('.zalo-item');
+    zaloItems.forEach(item => {
         if (lang === 'en') {
-            zaloItem.style.display = 'none';
+            item.style.display = 'none';
         } else {
-            zaloItem.style.display = 'flex';
+            item.style.display = '';
         }
-    }
+    });
 }
 
 // Gọi khi trang load để kiểm tra ngôn ngữ hiện tại

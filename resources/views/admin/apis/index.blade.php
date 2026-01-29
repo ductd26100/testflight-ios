@@ -116,9 +116,15 @@
                             let color = 'var(--success)';
                             let daysText = '';
 
-                            if (diffDays <= 0) {
+                            if (diffDays < 0) {
                                 color = 'var(--danger)';
                                 daysText = ' (Đã hết hạn)';
+                            } else if (diffDays === 0) {
+                                color = 'var(--warning)';
+                                daysText = ' (Hết hạn hôm nay)';
+                            } else if (diffDays === 1) {
+                                color = 'var(--warning)';
+                                daysText = ' (Còn 1 ngày)';
                             } else if (diffDays <= 7) {
                                 color = 'var(--warning)';
                                 daysText = ' (Còn ' + diffDays + ' ngày)';
@@ -137,10 +143,10 @@
                         data: 'status', render: function (data, type, row) {
                             const
                                 checked = data === 'open' ? 'checked' : ''; return ` <label class="toggle-switch">
-                                                <input type="checkbox" ${checked} onchange="toggleStatus(${row.id})">
-                                                <span class="toggle-slider"></span>
-                                                </label>
-                                                `;
+                                                    <input type="checkbox" ${checked} onchange="toggleStatus(${row.id})">
+                                                    <span class="toggle-slider"></span>
+                                                    </label>
+                                                    `;
                         }
                     },
                     {
@@ -150,12 +156,12 @@
                                 ? `<button onclick="deleteApi(${data})" class="btn btn-danger btn-sm" title="Xóa">🗑️</button>`
                                 : '';
                             return `
-                                                <div class="actions">
-                                                    <button onclick="renewApi(${data})" class="btn btn-success btn-sm" title="Gia hạn 30 ngày">🔄</button>
-                                                    <a href="/admin/apis/${data}/edit" class="btn btn-primary btn-sm" title="Sửa">✏️</a>
-                                                    ${deleteBtn}
-                                                </div>
-                                                `;
+                                                    <div class="actions">
+                                                        <button onclick="renewApi(${data})" class="btn btn-success btn-sm" title="Gia hạn 30 ngày">🔄</button>
+                                                        <a href="/admin/apis/${data}/edit" class="btn btn-primary btn-sm" title="Sửa">✏️</a>
+                                                        ${deleteBtn}
+                                                    </div>
+                                                    `;
                         }
                     }
                 ],

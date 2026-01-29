@@ -4,11 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
-    return redirect('/landing/');
-});
-
-// Hoặc nếu muốn hiển thị trực tiếp file HTML
-Route::get('/landing', function () {
     return response()->file(public_path('landing/index.html'));
 });
 
