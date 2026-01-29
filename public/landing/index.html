@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern landing page with language switching - VN/EN">
+    <title>Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/landing/styles.css">
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <img src="/logo.png" alt="TestFlightIOS" class="logo-img">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#features" data-i18n="nav.features">Tính năng</a></li>
+                    <li><a href="#pricing" data-i18n="nav.pricing">Bảng giá</a></li>
+                    <li><a href="#contact" data-i18n="nav.contact">Liên hệ</a></li>
+                    <li><a href="/check-link" data-i18n="nav.checklink" class="nav-check-link">🔍 Check Link</a></li>
+                </ul>
+                <div class="nav-right">
+                    <!-- Mobile Hamburger Button -->
+                    <button class="mobile-menu-btn" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+                        <span class="hamburger-icon">☰</span>
+                    </button>
+                    <div class="language-switcher">
+                        <button class="lang-btn active" data-lang="vi" id="btn-vi">VN</button>
+                        <button class="lang-btn" data-lang="en" id="btn-en">EN</button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Offcanvas Mobile Menu -->
+            <div class="offcanvas offcanvas-end bg-dark text-white" tabindex="-1" id="mobileMenu"
+                aria-labelledby="mobileMenuLabel">
+                <div class="offcanvas-header border-bottom border-secondary">
+                    <a href="/" class="offcanvas-title" id="mobileMenuLabel">
+                        <img src="/logo.png" alt="TestFlightIOS" style="height: 35px;">
+                    </a>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="nav flex-column gap-2">
+                        <li class="nav-item">
+                            <a class="nav-link text-white py-3 px-3 rounded" href="#features"
+                                data-bs-dismiss="offcanvas" data-i18n="nav.features">
+                                ⚡ Tính năng
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white py-3 px-3 rounded" href="#pricing" data-bs-dismiss="offcanvas"
+                                data-i18n="nav.pricing">
+                                💰 Bảng giá
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white py-3 px-3 rounded" href="#contact" data-bs-dismiss="offcanvas"
+                                data-i18n="nav.contact">
+                                📧 Liên hệ
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white py-3 px-3 rounded" href="/check-link"
+                                data-i18n="nav.checklink">
+                                🔍 Check Link
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="hero-content text-center">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="/logo.png" alt="TestFlightIOS" style="height: 80px;">
+                </div>
+                <h1 class="hero-title" data-i18n="hero.title" style="text-align: center;">Nền tảng phân phối bản Beta
+                    chuyên nghiệp cho iOS
+                </h1>
+                <p class="hero-subtitle" data-i18n="hero.subtitle">Triển khai nhanh - Nhận link TestFlight ngay sau đăng
+                    ký. Dữ liệu và bản build được bảo vệ tuyệt đối.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-badge" data-i18n="features.badge">Tại sao chọn chúng tôi?</span>
+                <h2 class="section-title" data-i18n="features.title">Dịch vụ TestFlight <span
+                        class="gradient-text">chuyên nghiệp nhất</span></h2>
+                <p class="section-subtitle" data-i18n="features.subtitle">Trải nghiệm dịch vụ lên TestFlight nhanh
+                    chóng, an toàn và tiện lợi nhất thị trường.</p>
+            </div>
+            <div class="features-grid row g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="feature-card text-center h-100">
+                        <div class="feature-icon mx-auto">
+                            <span>⚡</span>
+                        </div>
+                        <h3 data-i18n="features.f1.title">Triển khai siêu nhanh</h3>
+                        <p data-i18n="features.f1.desc">Nhận link TestFlight chỉ trong vài phút sau khi đăng ký. Không
+                            cần
+                            chờ đợi, không cần tài khoản Developer.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="feature-card text-center h-100">
+                        <div class="feature-icon mx-auto">
+                            <span>🔒</span>
+                        </div>
+                        <h3 data-i18n="features.f2.title">Bảo mật Apple chính hãng</h3>
+                        <p data-i18n="features.f2.desc">Sử dụng hệ thống TestFlight chính thức của Apple. Ứng dụng được
+                            ký
+                            số an toàn, không lo bị thu hồi.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="feature-card text-center h-100">
+                        <div class="feature-icon mx-auto">
+                            <span>🎧</span>
+                        </div>
+                        <h3 data-i18n="features.f3.title">Hỗ trợ 24/7</h3>
+                        <p data-i18n="features.f3.desc">Đội ngũ hỗ trợ luôn sẵn sàng giải đáp thắc mắc qua Telegram,
+                            Zalo,
+                            Messenger bất cứ lúc nào.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="feature-card text-center h-100">
+                        <div class="feature-icon mx-auto">
+                            <span>🔗</span>
+                        </div>
+                        <h3 data-i18n="features.f4.title">Link riêng biệt</h3>
+                        <p data-i18n="features.f4.desc">Mỗi khách hàng nhận được link TestFlight riêng, dễ dàng quản lý
+                            và
+                            chia sẻ cho người dùng của bạn.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="feature-card text-center h-100">
+                        <div class="feature-icon mx-auto">
+                            <span>📱</span>
+                        </div>
+                        <h3 data-i18n="features.f5.title">Tương thích mọi iPhone/iPad</h3>
+                        <p data-i18n="features.f5.desc">Hoạt động trên tất cả các thiết bị iOS từ iPhone 6s trở lên,
+                            iPad và
+                            iPod Touch đều được hỗ trợ.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="feature-card text-center h-100">
+                        <div class="feature-icon mx-auto">
+                            <span>🔄</span>
+                        </div>
+                        <h3 data-i18n="features.f6.title">Gia hạn dễ dàng</h3>
+                        <p data-i18n="features.f6.desc">Gia hạn link TestFlight nhanh chóng chỉ với một click. Không mất
+                            dữ
+                            liệu, không cần cài lại app.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-i18n="pricing.badge">Bảng giá</span>
+                <h2 class="section-title" data-i18n="pricing.title">Chọn gói phù hợp với <span class="gradient-text">nhu
+                        cầu</span> của bạn</h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 data-i18n="pricing.starter.name">Starter</h3>
+                        <p class="pricing-subtitle" data-i18n="pricing.starter.desc">Phù hợp cho cá nhân</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="amount" data-i18n="pricing.starter.price">500K~1M</span>
+                        <span class="period" data-i18n="pricing.period">/tháng</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✓</span><span data-i18n="pricing.starter.f1">Hạn dùng 30 ngày</span>
+                        </li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.starter.f2">1 Link TestFlight</span>
+                        </li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.starter.f3">Hỗ trợ VIP</span></li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.starter.f4">Không giới hạn lượt
+                                tải</span></li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.starter.f5">Bảo hành 30 ngày</span>
+                        </li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.starter.f6">Có link ngay sau đợt quét
+                                Apple</span></li>
+                    </ul>
+
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge" data-i18n="pricing.popular">Phổ biến nhất</div>
+                    <div class="pricing-header">
+                        <h3 data-i18n="pricing.pro.name">Professional</h3>
+                        <p class="pricing-subtitle" data-i18n="pricing.pro.desc">Phù hợp cho team nhỏ</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="amount" data-i18n="pricing.pro.price">800K~1M5</span>
+                        <span class="period" data-i18n="pricing.period">/tháng</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✓</span><span data-i18n="pricing.pro.f1">Hạn dùng 30 ngày</span></li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.pro.f2">1 Link TestFlight</span></li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.pro.f3">Hỗ trợ VIP</span></li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.pro.f4">Không giới hạn lượt tải</span>
+                        </li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.pro.f5">Bảo hành 30 ngày</span></li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.pro.f6">Có link ngay sau đợt quét
+                                Apple</span></li>
+                    </ul>
+
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 data-i18n="pricing.enterprise.name">Enterprise</h3>
+                        <p class="pricing-subtitle" data-i18n="pricing.enterprise.desc">Phù hợp cho doanh nghiệp lớn</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="amount" data-i18n="pricing.enterprise.price">300K</span>
+                        <span class="period" data-i18n="pricing.enterprise.period">/IPA</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✓</span><span data-i18n="pricing.enterprise.f1">Fix full lỗi IPA</span>
+                        </li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.enterprise.f2">Upload lên
+                                TestFlight</span></li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.enterprise.f3">Hỗ trợ 24/7</span></li>
+                        <li><span class="check">✓</span><span data-i18n="pricing.enterprise.f4">Giao nhanh trong
+                                ngày</span></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <span class="section-badge" data-i18n="contact.badge">Liên hệ</span>
+                    <h2 class="section-title" data-i18n="contact.title">Hãy <span class="gradient-text">kết nối</span>
+                        với chúng tôi</h2>
+                    <p data-i18n="contact.subtitle">Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Hãy liên hệ ngay!
+                    </p>
+                    <div class="contact-social-links">
+                        <a href="mailto:testflightios2610@gmail.com" class="contact-social-item">
+                            <img src="/icons/icons8-gmail-48.png" alt="Mail" class="contact-social-icon">
+                            <span>Mail</span>
+                        </a>
+                        <a href="https://zalo.me/your_zalo" class="contact-social-item" target="_blank">
+                            <img src="/icons/icons8-zalo-48.png" alt="Zalo" class="contact-social-icon">
+                            <span>Zalo</span>
+                        </a>
+                        <a href="https://t.me/your_telegram" class="contact-social-item" target="_blank">
+                            <img src="/icons/icons8-telegram-48.png" alt="Telegram" class="contact-social-icon">
+                            <span>Telegram</span>
+                        </a>
+                        <a href="https://m.me/your_facebook" class="contact-social-item" target="_blank">
+                            <img src="/icons/icons8-facebook-messenger-48.png" alt="Messenger"
+                                class="contact-social-icon">
+                            <span>Messenger</span>
+                        </a>
+                        <a href="https://wa.me/your_whatsapp" class="contact-social-item" target="_blank">
+                            <img src="/icons/icons8-whatsapp-48.png" alt="WhatsApp" class="contact-social-icon">
+                            <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <p class="form-intro" data-i18n="contact.form.intro">Hãy để lại thông tin, tôi sẽ liên hệ lại cho
+                        bạn</p>
+                    <div class="form-group">
+                        <label for="name" data-i18n="contact.form.name">Họ và tên</label>
+                        <input type="text" id="name" placeholder="Nguyễn Văn A"
+                            data-i18n-placeholder="contact.form.name.placeholder">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="telegram" data-i18n="contact.form.telegram">Telegram</label>
+                        <input type="text" id="telegram" placeholder="@username hoặc số điện thoại"
+                            data-i18n-placeholder="contact.form.telegram.placeholder">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-i18n="contact.form.message">Tin nhắn</label>
+                        <textarea id="message" rows="4" placeholder="Nội dung tin nhắn..."
+                            data-i18n-placeholder="contact.form.message.placeholder"></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn primary full-width" data-i18n="contact.form.submit">Gửi tin
+                        nhắn</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <img src="/logo.png" alt="TestFlightIOS" class="logo-img">
+                    </a>
+                    <p data-i18n="footer.desc">Giải pháp công nghệ đột phá cho doanh nghiệp hiện đại.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">𝕏</a>
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">💼</a>
+                        <a href="#" class="social-link">📷</a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <strong data-i18n="contact.address.label">Địa chỉ</strong>
+                            <p data-i18n="contact.address.value">123 Đường ABC, Quận 1, TP.HCM</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <strong>Email</strong>
+                            <p>testflightios2610@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <div>
+                            <strong data-i18n="contact.phone.label">Điện thoại</strong>
+                            <p>+84 28 1234 5678</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 TechFlow. <span data-i18n="footer.rights">Tất cả quyền được bảo lưu.</span></p>
+            </div>
+        </div>
+    </footer>
+    <!-- Floating Contact Button -->
+    <div class="floating-contact-wrapper">
+        <!-- Popup Menu -->
+        <div class="contact-popup" id="contactPopup">
+            <a href="#contact" class="popup-item" onclick="toggleContactPopup()">
+                <img src="/icons/icons8-gmail-48.png" alt="Mail" class="popup-img">
+                <span class="popup-text">Mail</span>
+            </a>
+            <a href="https://zalo.me/your_zalo" class="popup-item zalo-only" id="zaloItem" target="_blank">
+                <img src="/icons/icons8-zalo-48.png" alt="Zalo" class="popup-img">
+                <span class="popup-text">Zalo</span>
+            </a>
+            <a href="https://t.me/your_telegram" class="popup-item" target="_blank">
+                <img src="/icons/icons8-telegram-48.png" alt="Telegram" class="popup-img">
+                <span class="popup-text">Telegram</span>
+            </a>
+            <a href="https://m.me/your_facebook" class="popup-item" target="_blank">
+                <img src="/icons/icons8-facebook-messenger-48.png" alt="Messenger" class="popup-img">
+                <span class="popup-text">Messenger</span>
+            </a>
+            <a href="https://wa.me/84123456789" class="popup-item" target="_blank">
+                <img src="/icons/icons8-whatsapp-48.png" alt="WhatsApp" class="popup-img">
+                <span class="popup-text">WhatsApp</span>
+            </a>
+        </div>
+        <!-- Main Button -->
+        <button class="floating-contact-btn" id="contactBtn" onclick="toggleContactPopup()">
+            <span class="btn-text" data-i18n="floating.contact">Liên hệ</span>
+            <span class="btn-icon">🎧</span>
+        </button>
+    </div>
+
+    <style>
+        .floating-contact-wrapper {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .floating-contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #ff4444, #ff6b6b);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 68, 68, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .floating-contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 68, 68, 0.5);
+        }
+
+        .floating-contact-btn .btn-icon {
+            font-size: 18px;
+        }
+
+        .contact-popup {
+            position: absolute;
+            bottom: 55px;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 8px;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-popup.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .popup-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.2s ease;
+        }
+
+        .popup-item:hover {
+            background: #f5f5f5;
+        }
+
+        .popup-icon {
+            font-size: 20px;
+        }
+
+        .popup-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .popup-icon.zalo-icon {
+            background: #0068ff;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 8px;
+            border-radius: 8px;
+        }
+
+        .popup-icon.telegram-icon {
+            background: #0088cc;
+            color: white;
+            font-size: 14px;
+            padding: 5px 7px;
+            border-radius: 8px;
+        }
+
+        .popup-icon.chat-icon {
+            background: #ff6b9d;
+            padding: 5px 7px;
+            border-radius: 8px;
+        }
+
+        .popup-icon.messenger-icon {
+            background: linear-gradient(135deg, #00c6ff, #0078ff);
+            color: white;
+            font-size: 14px;
+            padding: 5px 7px;
+            border-radius: 8px;
+        }
+
+        .popup-icon.whatsapp-icon {
+            background: #25d366;
+            color: white;
+            font-size: 14px;
+            padding: 5px 7px;
+            border-radius: 8px;
+        }
+
+        .popup-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Arrow below popup */
+        .contact-popup::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 30px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            transform: rotate(45deg);
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+
+    <script>
+        function toggleContactPopup() {
+            const popup = document.getElementById('contactPopup');
+            popup.classList.toggle('show');
+        }
+
+        // Close popup when clicking outside
+        document.addEventListener('click', function (e) {
+            const wrapper = document.querySelector('.floating-contact-wrapper');
+            const popup = document.getElementById('contactPopup');
+            if (!wrapper.contains(e.target)) {
+                popup.classList.remove('show');
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/landing/translations.js"></script>
+    <script src="/landing/script.js"></script>
+    <script src="/landing/protection.js"></script>
+</body>
+
+</html>

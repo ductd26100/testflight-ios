@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="">
+    <title>Check TestFlight Link - TestFlight VIP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1e1e2e;
+            --darker: #181825;
+            --light: #cdd6f4;
+            --muted: #6c7086;
+            --card-bg: #313244;
+            --border: #45475a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background: var(--dark);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--light);
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            color: var(--primary);
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .back-btn {
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .check-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .check-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .check-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .check-subtitle {
+            color: var(--muted);
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--light);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--darker);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            color: var(--light);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+
+        .form-control::placeholder {
+            color: var(--muted);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Result Section */
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            display: none;
+            text-align: left;
+        }
+
+        .result.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .result.success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .result.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .result.warning {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .result-icon {
+            font-size: 32px;
+        }
+
+        .result-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .result.success .result-title {
+            color: var(--success);
+        }
+
+        .result.error .result-title {
+            color: var(--danger);
+        }
+
+        .result.warning .result-title {
+            color: var(--warning);
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .info-item {
+            background: var(--darker);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .info-item.full {
+            grid-column: 1 / -1;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        .info-value.success {
+            color: var(--success);
+        }
+
+        .info-value.danger {
+            color: var(--danger);
+        }
+
+        .info-value.warning {
+            color: var(--warning);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-badge.open {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .status-badge.close {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* Examples */
+        .examples {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--darker);
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .examples-title {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .example-link {
+            font-size: 13px;
+            color: var(--primary);
+            word-break: break-all;
+        }
+
+        @media (max-width: 500px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">✦</span>
+                <span class="logo-text">TestFlight VIP</span>
+            </a>
+            <a href="/" class="back-btn" data-i18n="checklink.back">← Quay lại trang chủ</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="check-card">
+            <div class="check-icon">🔍</div>
+            <h1 class="check-title" data-i18n="checklink.title">Kiểm tra Link TestFlight</h1>
+            <p class="check-subtitle" data-i18n="checklink.subtitle">Nhập link TestFlight để kiểm tra thông tin thuê
+                trên hệ thống</p>
+
+            <form id="checkForm">
+                <div class="form-group">
+                    <label for="testflight_link" data-i18n="checklink.label">Link TestFlight</label>
+                    <input type="url" id="testflight_link" name="testflight_link" class="form-control"
+                        placeholder="https://testflight.apple.com/join/xxxxxx" required>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span>🔍</span>
+                    <span data-i18n="checklink.button">Kiểm tra ngay</span>
+                </button>
+            </form>
+
+            <div class="examples">
+                <div class="examples-title" data-i18n="checklink.example">Ví dụ link hợp lệ:</div>
+                <div class="example-link">https://testflight.apple.com/join/JN8ZXpEC</div>
+            </div>
+
+            <!-- Result -->
+            <div id="result" class="result">
+                <div class="result-header">
+                    <div class="result-icon" id="resultIcon"></div>
+                    <div class="result-title" id="resultTitle"></div>
+                </div>
+                <div id="resultContent"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 TestFlight VIP. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('checkForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const result = document.getElementById('result');
+        const resultIcon = document.getElementById('resultIcon');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultContent = document.getElementById('resultContent');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const link = document.getElementById('testflight_link').value.trim();
+            const lang = localStorage.getItem('language') || 'vi';
+            const t = checkLinkTranslations[lang];
+
+            // Validate link format
+            if (!link.match(/^https:\/\/testflight\.apple\.com\/join\/[a-zA-Z0-9]+$/)) {
+                showError('❌', t['checklink.invalidLink'], t['checklink.invalidLinkDesc']);
+                return;
+            }
+
+            // Show loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="spinner"></div> <span>' + t['checklink.checking'] + '</span>';
+
+            try {
+                const response = await fetch('/check-testflight', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ link: link })
+                });
+
+                const data = await response.json();
+
+                if (data.found) {
+                    showSuccess(data.data);
+                } else {
+                    showError('❌', t['checklink.notFound'], data.message);
+                }
+            } catch (error) {
+                showError('❌', t['checklink.connectionError'], t['checklink.connectionErrorDesc']);
+            }
+
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>🔍</span> <span>' + t['checklink.button'] + '</span>';
+        });
+
+        function showSuccess(data) {
+            const lang = localStorage.getItem('language') || 'vi';
+            const t = checkLinkTranslations[lang];
+
+            result.className = 'result show success';
+            resultIcon.textContent = '✅';
+            resultTitle.textContent = t['checklink.found'];
+
+            // Determine remaining days class
+            let remainingClass = 'success';
+            let remainingText = data.remaining_days + ' ' + t['checklink.days'];
+
+            if (data.is_expired || data.remaining_days <= 0) {
+                remainingClass = 'danger';
+                remainingText = t['checklink.expired'];
+            } else if (data.remaining_days <= 7) {
+                remainingClass = 'warning';
+            }
+
+            // Status badge
+            const statusBadge = data.status === 'open'
+                ? '<span class="status-badge open">' + t['checklink.active'] + '</span>'
+                : '<span class="status-badge close">' + t['checklink.closed'] + '</span>';
+
+            resultContent.innerHTML = `
+                <div class="info-grid">
+                    <div class="info-item full">
+                        <div class="info-label">${t['checklink.appName']}</div>
+                        <div class="info-value">${data.name}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">${t['checklink.startDate']}</div>
+                        <div class="info-value">${data.start_date}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">${t['checklink.expiryDate']}</div>
+                        <div class="info-value">${data.expiry_date}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">${t['checklink.remaining']}</div>
+                        <div class="info-value ${remainingClass}">${remainingText}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">${t['checklink.status']}</div>
+                        <div class="info-value">${statusBadge}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showError(icon, title, message) {
+            result.className = 'result show error';
+            resultIcon.textContent = icon;
+            resultTitle.textContent = title;
+            resultContent.innerHTML = `<p style="color: var(--muted);">${message}</p>`;
+        }
+
+        // Translations for check-link page
+        const checkLinkTranslations = {
+            vi: {
+                'checklink.back': '← Quay lại trang chủ',
+                'checklink.title': 'Kiểm tra Link TestFlight',
+                'checklink.subtitle': 'Nhập link TestFlight để kiểm tra thông tin thuê trên hệ thống',
+                'checklink.label': 'Link TestFlight',
+                'checklink.button': 'Kiểm tra ngay',
+                'checklink.example': 'Ví dụ link hợp lệ:',
+                'checklink.checking': 'Đang kiểm tra...',
+                'checklink.invalidLink': 'Link không hợp lệ',
+                'checklink.invalidLinkDesc': 'Vui lòng nhập đúng định dạng: https://testflight.apple.com/join/xxxxxx',
+                'checklink.notFound': 'Không tìm thấy',
+                'checklink.connectionError': 'Lỗi kết nối',
+                'checklink.connectionErrorDesc': 'Không thể kết nối đến server. Vui lòng thử lại.',
+                'checklink.found': 'Tìm thấy trên hệ thống!',
+                'checklink.appName': 'Tên ứng dụng',
+                'checklink.startDate': 'Ngày bắt đầu thuê',
+                'checklink.expiryDate': 'Ngày hết hạn',
+                'checklink.remaining': 'Thời gian còn lại',
+                'checklink.status': 'Trạng thái',
+                'checklink.days': 'ngày',
+                'checklink.expired': 'Đã hết hạn',
+                'checklink.active': '🟢 Đang hoạt động',
+                'checklink.closed': '🔴 Đã đóng'
+            },
+            en: {
+                'checklink.back': '← Back to Home',
+                'checklink.title': 'Check TestFlight Link',
+                'checklink.subtitle': 'Enter TestFlight link to check rental information on the system',
+                'checklink.label': 'TestFlight Link',
+                'checklink.button': 'Check Now',
+                'checklink.example': 'Valid link example:',
+                'checklink.checking': 'Checking...',
+                'checklink.invalidLink': 'Invalid Link',
+                'checklink.invalidLinkDesc': 'Please enter correct format: https://testflight.apple.com/join/xxxxxx',
+                'checklink.notFound': 'Not Found',
+                'checklink.connectionError': 'Connection Error',
+                'checklink.connectionErrorDesc': 'Cannot connect to server. Please try again.',
+                'checklink.found': 'Found on system!',
+                'checklink.appName': 'App Name',
+                'checklink.startDate': 'Start Date',
+                'checklink.expiryDate': 'Expiry Date',
+                'checklink.remaining': 'Remaining Time',
+                'checklink.status': 'Status',
+                'checklink.days': 'days',
+                'checklink.expired': 'Expired',
+                'checklink.active': '🟢 Active',
+                'checklink.closed': '🔴 Closed'
+            }
+        };
+
+        // Get current language from localStorage
+        let currentLang = localStorage.getItem('language') || 'vi';
+
+        // Apply translations on page load
+        function applyTranslations(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (checkLinkTranslations[lang] && checkLinkTranslations[lang][key]) {
+                    element.innerHTML = checkLinkTranslations[lang][key];
+                }
+            });
+            document.documentElement.lang = lang;
+        }
+
+        // Apply on page load
+        applyTranslations(currentLang);
+
+        // Listen for storage changes (when language is changed on main page)
+        window.addEventListener('storage', function (e) {
+            if (e.key === 'language') {
+                currentLang = e.newValue || 'vi';
+                applyTranslations(currentLang);
+            }
+        });
+    </script>
+</body>
+
+</html>
