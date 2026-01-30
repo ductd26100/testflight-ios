@@ -5,18 +5,36 @@
 
     RewriteEngine On
 
-    # ===== ANTI-CLONE: Block common website copier tools =====
-    RewriteCond %{HTTP_USER_AGENT} (HTTrack|WebCopier|WebZIP|Teleport|Offline\ Explorer|wget|curl|libwww|Scrapy|python|Java|HttpClient|Fetch|Grabber|Download\ Demon|WebReaper|SiteSnagger|NetAnts|Xaldon|WebDownloader|WebStripper|NCollector|Siphon|GetRight|Mass\ Downloader) [NC]
+    # ===== ADVANCED ANTI-CLONE PROTECTION =====
+    
+    # Block common website copier tools (expanded list)
+    RewriteCond %{HTTP_USER_AGENT} (HTTrack|WebCopier|WebZIP|Teleport|Offline\ Explorer|wget|curl|libwww|Scrapy|python|Java|HttpClient|Fetch|Grabber|Download\ Demon|WebReaper|SiteSnagger|NetAnts|Xaldon|WebDownloader|WebStripper|NCollector|Siphon|GetRight|Mass\ Downloader|Go-http-client|axios|node-fetch|Postman|Insomnia|httpie|aria2|LinkChecker|SiteSucker|pavuk|CopyBot|EmailCollector|WebAuto|NetMechanic|Zeus|PageFreezer|Screaming\ Frog|Ahrefs|SEMrush|Majestic) [NC]
     RewriteRule .* - [F,L]
 
-    # Block requests without proper referer (optional - can be strict)
-    # RewriteCond %{HTTP_REFERER} !^https?://(www\.)?testflightios\.com [NC]
-    # RewriteCond %{REQUEST_URI} \.(html|htm|css|js)$ [NC]
-    # RewriteRule .* - [F,L]
+    # Block empty user agents
+    RewriteCond %{HTTP_USER_AGENT} ^$ 
+    RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$ [NC]
+    RewriteRule .* - [F,L]
 
-    # Block direct access to certain directories
-    RewriteRule ^landing/.*\.(js|css)$ - [F,L]
-    
+    # Block direct access to HTML files in landing folder
+    RewriteCond %{REQUEST_URI} ^/landing/.*\.html$ [NC]
+    RewriteRule .* - [F,L]
+
+    # Protect CSS and JS - require valid referer
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?testflightios\.com [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://localhost [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://127\.0\.0\.1 [NC]
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{REQUEST_URI} \.(css|js)$ [NC]
+    RewriteRule .* - [F,L]
+
+    # Block wget-style requests
+    RewriteCond %{HTTP:Accept-Encoding} ^$ 
+    RewriteCond %{HTTP:Accept-Language} ^$
+    RewriteCond %{REQUEST_METHOD} GET
+    RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$ [NC]
+    RewriteRule .* - [F,L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -38,27 +56,45 @@
 
 # ===== Security Headers =====
 <IfModule mod_headers.c>
-    # Prevent iframe embedding from other domains
+    # Prevent iframe embedding
     Header always set X-Frame-Options "SAMEORIGIN"
-    
-    # Prevent MIME type sniffing
-    Header always set X-Content-Type-Options "nosniff"
-    
-    # XSS Protection
-    Header always set X-XSS-Protection "1; mode=block"
-    
-    # Referrer Policy
-    Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    
-    # Content Security Policy - prevent inline scripts from other domains
     Header always set Content-Security-Policy "frame-ancestors 'self'"
+    
+    # Security headers
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # Anti-caching for HTML
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "Sat, 01 Jan 2000 00:00:00 GMT"
+    </FilesMatch>
+</IfModule>
+
+# ===== Rate Limiting (if mod_evasive available) =====
+<IfModule mod_evasive20.c>
+    DOSHashTableSize 3097
+    DOSPageCount 5
+    DOSSiteCount 50
+    DOSPageInterval 1
+    DOSSiteInterval 1
+    DOSBlockingPeriod 600
 </IfModule>
 
 # ===== Disable directory listing =====
 Options -Indexes
 
 # ===== Block access to sensitive files =====
-<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|bak|config|env)$">
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|bak|config|env|blade\.php)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ===== Prevent access to hidden files =====
+<FilesMatch "^\.">
     Order Allow,Deny
     Deny from all
 </FilesMatch>
