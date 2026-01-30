@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Api;
+use App\Exports\ApisExport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ApiController extends Controller
 {
@@ -183,5 +185,14 @@ class ApiController extends Controller
             'new_expiry' => $api->expiry_datetime->format('d/m/Y H:i'),
             'message' => 'Đã gia hạn thêm 30 ngày!'
         ]);
+    }
+
+    /**
+     * Export APIs to Excel
+     */
+    public function export()
+    {
+        $filename = 'apis_export_' . now()->format('Y-m-d') . '.xlsx';
+        return Excel::download(new ApisExport(), $filename);
     }
 }

@@ -5,9 +5,14 @@
 @section('content')
     <div class="page-header">
         <h1>🔗 Quản lý Link</h1>
-        <a href="{{ route('admin.apis.create') }}" class="btn btn-primary">
-            <span>➕</span> Thêm Link mới
-        </a>
+        <div style="display: flex; gap: 10px;">
+            <a href="{{ route('admin.apis.export') }}" class="btn btn-success">
+                <span>📥</span> Xuất Excel
+            </a>
+            <a href="{{ route('admin.apis.create') }}" class="btn btn-primary">
+                <span>➕</span> Thêm Link mới
+            </a>
+        </div>
     </div>
 
     <div class="card">
@@ -143,10 +148,10 @@
                         data: 'status', render: function (data, type, row) {
                             const
                                 checked = data === 'open' ? 'checked' : ''; return ` <label class="toggle-switch">
-                                                    <input type="checkbox" ${checked} onchange="toggleStatus(${row.id})">
-                                                    <span class="toggle-slider"></span>
-                                                    </label>
-                                                    `;
+                                                        <input type="checkbox" ${checked} onchange="toggleStatus(${row.id})">
+                                                        <span class="toggle-slider"></span>
+                                                        </label>
+                                                        `;
                         }
                     },
                     {
@@ -156,12 +161,12 @@
                                 ? `<button onclick="deleteApi(${data})" class="btn btn-danger btn-sm" title="Xóa">🗑️</button>`
                                 : '';
                             return `
-                                                    <div class="actions">
-                                                        <button onclick="renewApi(${data})" class="btn btn-success btn-sm" title="Gia hạn 30 ngày">🔄</button>
-                                                        <a href="/admin/apis/${data}/edit" class="btn btn-primary btn-sm" title="Sửa">✏️</a>
-                                                        ${deleteBtn}
-                                                    </div>
-                                                    `;
+                                                        <div class="actions">
+                                                            <button onclick="renewApi(${data})" class="btn btn-success btn-sm" title="Gia hạn 30 ngày">🔄</button>
+                                                            <a href="/admin/apis/${data}/edit" class="btn btn-primary btn-sm" title="Sửa">✏️</a>
+                                                            ${deleteBtn}
+                                                        </div>
+                                                        `;
                         }
                     }
                 ],

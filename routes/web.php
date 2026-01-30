@@ -117,6 +117,9 @@ Route::prefix('admin')->name('admin.')->middleware(\App\Http\Middleware\AdminAut
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Export APIs to Excel (MUST be before resource route)
+    Route::get('apis/export', [ApiController::class, 'export'])->name('apis.export');
+
     // APIs Resource
     Route::resource('apis', ApiController::class);
 
