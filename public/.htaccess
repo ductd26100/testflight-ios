@@ -5,6 +5,18 @@
 
     RewriteEngine On
 
+    # ===== ANTI-CLONE: Block common website copier tools =====
+    RewriteCond %{HTTP_USER_AGENT} (HTTrack|WebCopier|WebZIP|Teleport|Offline\ Explorer|wget|curl|libwww|Scrapy|python|Java|HttpClient|Fetch|Grabber|Download\ Demon|WebReaper|SiteSnagger|NetAnts|Xaldon|WebDownloader|WebStripper|NCollector|Siphon|GetRight|Mass\ Downloader) [NC]
+    RewriteRule .* - [F,L]
+
+    # Block requests without proper referer (optional - can be strict)
+    # RewriteCond %{HTTP_REFERER} !^https?://(www\.)?testflightios\.com [NC]
+    # RewriteCond %{REQUEST_URI} \.(html|htm|css|js)$ [NC]
+    # RewriteRule .* - [F,L]
+
+    # Block direct access to certain directories
+    RewriteRule ^landing/.*\.(js|css)$ - [F,L]
+    
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -23,3 +35,30 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# ===== Security Headers =====
+<IfModule mod_headers.c>
+    # Prevent iframe embedding from other domains
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # XSS Protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content Security Policy - prevent inline scripts from other domains
+    Header always set Content-Security-Policy "frame-ancestors 'self'"
+</IfModule>
+
+# ===== Disable directory listing =====
+Options -Indexes
+
+# ===== Block access to sensitive files =====
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|bak|config|env)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

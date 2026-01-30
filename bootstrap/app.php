@@ -11,6 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Add anti-clone protection
+        $middleware->web(append: [
+            \App\Http\Middleware\AntiCloneMiddleware::class,
+        ]);
+
         $middleware->validateCsrfTokens(except: [
             '/contact/send',
             '/check-testflight',
