@@ -37,10 +37,15 @@ class Api extends Model
         return url('/api/' . $this->id);
     }
 
-    // Check if API is expired
+    // Check if API is expired (only if expiry date is BEFORE today)
     public function isExpired(): bool
     {
-        return $this->expiry_datetime && $this->expiry_datetime->isPast();
+        if (!$this->expiry_datetime) {
+            return false;
+        }
+        $today = now()->startOfDay();
+        $expiry = $this->expiry_datetime->startOfDay();
+        return $expiry->lt($today); // Expired only if expiry date < today
     }
 
     // Get remaining days

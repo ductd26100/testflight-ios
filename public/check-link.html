@@ -489,9 +489,12 @@
             let remainingClass = 'success';
             let remainingText = data.remaining_days + ' ' + t['checklink.days'];
 
-            if (data.is_expired || data.remaining_days <= 0) {
+            if (data.is_expired || data.remaining_days < 0) {
                 remainingClass = 'danger';
                 remainingText = t['checklink.expired'];
+            } else if (data.remaining_days === 0) {
+                remainingClass = 'warning';
+                remainingText = t['checklink.expiringToday'];
             } else if (data.remaining_days <= 7) {
                 remainingClass = 'warning';
             }
@@ -557,6 +560,7 @@
                 'checklink.status': 'Trạng thái',
                 'checklink.days': 'ngày',
                 'checklink.expired': 'Đã hết hạn',
+                'checklink.expiringToday': 'Hết hạn hôm nay',
                 'checklink.active': '🟢 Đang hoạt động',
                 'checklink.closed': '🔴 Đã đóng'
             },
@@ -581,6 +585,7 @@
                 'checklink.status': 'Status',
                 'checklink.days': 'days',
                 'checklink.expired': 'Expired',
+                'checklink.expiringToday': 'Expiring today',
                 'checklink.active': '🟢 Active',
                 'checklink.closed': '🔴 Closed'
             }
