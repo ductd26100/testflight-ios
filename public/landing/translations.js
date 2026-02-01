@@ -79,7 +79,7 @@ const translations = {
         'pricing.enterprise.cta': 'Liên hệ ngay',
         'pricing.starter.price': '800K~1M',
         'pricing.pro.price': '1M~1M5',
-        'pricing.enterprise.price': '300K',
+        'pricing.enterprise.price': '500K',
         'pricing.enterprise.period': '/IPA',
 
         // Contact Section
