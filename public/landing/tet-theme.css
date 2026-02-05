@@ -1,0 +1,515 @@
+/* ===== TET THEME - Lunar New Year 2026 ===== */
+/* BRIGHT RED-GOLD THEME */
+
+/* Override CSS Variables for Tet Theme */
+:root {
+    --primary: #dc2626;
+    --primary-dark: #b91c1c;
+    --primary-light: #ef4444;
+    --secondary: #f59e0b;
+    --accent: #fbbf24;
+    --dark: #7f1d1d;
+    --dark-light: #991b1b;
+    --gray: #fef2f2;
+    --gray-light: #450a0a;
+    --light: #fef3c7;
+    --white: #ffffff;
+    --gradient: linear-gradient(135deg, #dc2626 0%, #f59e0b 50%, #fbbf24 100%);
+}
+
+/* ===== BRIGHT BACKGROUND OVERRIDE ===== */
+body {
+    background: linear-gradient(135deg, #fef3c7 0%, #fecaca 50%, #fef3c7 100%) !important;
+    color: #450a0a !important;
+}
+
+/* Hero Section - Bright */
+.hero {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+}
+
+.hero-bg {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+}
+
+/* Navbar - Bright Red */
+.navbar {
+    background: rgba(185, 28, 28, 0.98) !important;
+    border-bottom: 2px solid #fbbf24 !important;
+}
+
+.nav-links a {
+    color: #fef3c7 !important;
+}
+
+.nav-links a:hover {
+    color: #fbbf24 !important;
+}
+
+/* Language Switcher */
+.language-switcher {
+    background: rgba(254, 243, 199, 0.2) !important;
+    border-color: rgba(251, 191, 36, 0.5) !important;
+}
+
+.lang-btn {
+    color: #fef3c7 !important;
+}
+
+.lang-btn.active {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24) !important;
+    color: #450a0a !important;
+}
+
+/* Hero Content */
+.hero-title {
+    color: #ffffff !important;
+}
+
+.hero-subtitle {
+    color: #fef3c7 !important;
+}
+
+/* Gradient Text - Gold */
+.gradient-text {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fef3c7 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.3);
+    }
+}
+
+/* Festive Background Shapes */
+.shape-1 {
+    background: #fbbf24 !important;
+    opacity: 0.4 !important;
+}
+
+.shape-2 {
+    background: #f59e0b !important;
+    opacity: 0.4 !important;
+}
+
+.shape-3 {
+    background: #fef3c7 !important;
+    opacity: 0.3 !important;
+}
+
+/* ===== FEATURES SECTION - BRIGHT ===== */
+.features {
+    background: linear-gradient(to bottom, #fef3c7, #fecaca) !important;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid #fbbf24 !important;
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.15) !important;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    border-color: #dc2626 !important;
+    box-shadow: 0 20px 50px rgba(220, 38, 38, 0.25) !important;
+}
+
+.feature-card h3 {
+    color: #991b1b !important;
+}
+
+.feature-card p {
+    color: #450a0a !important;
+}
+
+.feature-icon {
+    background: linear-gradient(135deg, #dc2626, #f59e0b) !important;
+}
+
+/* Section Headers on Light BG */
+.features .section-badge,
+.pricing .section-badge,
+.contact .section-badge {
+    background: rgba(220, 38, 38, 0.15) !important;
+    border-color: #dc2626 !important;
+    color: #991b1b !important;
+}
+
+.features .section-title,
+.pricing .section-title,
+.contact .section-title {
+    color: #450a0a !important;
+}
+
+.features .section-subtitle,
+.pricing .section-subtitle {
+    color: #7f1d1d !important;
+}
+
+/* ===== PRICING SECTION - BRIGHT ===== */
+.pricing {
+    background: linear-gradient(to bottom, #fecaca, #fef3c7) !important;
+}
+
+.pricing-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid #fbbf24 !important;
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.15) !important;
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    border-color: #dc2626 !important;
+}
+
+.pricing-card.popular {
+    background: linear-gradient(135deg, rgba(254, 243, 199, 0.95), rgba(255, 255, 255, 0.98)) !important;
+    border: 3px solid #dc2626 !important;
+    transform: scale(1.05);
+    box-shadow: 0 15px 50px rgba(220, 38, 38, 0.3) !important;
+}
+
+.pricing-card.popular:hover {
+    transform: scale(1.05) translateY(-8px);
+}
+
+.pricing-header h3 {
+    color: #991b1b !important;
+}
+
+.pricing-subtitle {
+    color: #7f1d1d !important;
+}
+
+.pricing-price .amount {
+    background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+}
+
+.pricing-price .period {
+    color: #7f1d1d !important;
+}
+
+.pricing-features li {
+    color: #450a0a !important;
+    border-bottom-color: rgba(220, 38, 38, 0.1) !important;
+}
+
+.pricing-features .check {
+    color: #16a34a !important;
+}
+
+/* Popular Badge */
+.popular-badge {
+    background: linear-gradient(135deg, #dc2626, #f59e0b) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4) !important;
+}
+
+/* ===== CONTACT SECTION - BRIGHT ===== */
+.contact {
+    background: linear-gradient(135deg, #fef3c7 0%, #fecaca 100%) !important;
+}
+
+.contact-info h2,
+.contact-info p {
+    color: #450a0a !important;
+}
+
+.contact-form {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid #fbbf24 !important;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.15) !important;
+}
+
+.contact-form label {
+    color: #991b1b !important;
+}
+
+.contact-form input,
+.contact-form textarea {
+    background: #fef3c7 !important;
+    border: 1px solid #fbbf24 !important;
+    color: #450a0a !important;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #7f1d1d !important;
+}
+
+.form-intro {
+    color: #7f1d1d !important;
+}
+
+/* ===== FOOTER - FESTIVE RED ===== */
+.footer {
+    background: linear-gradient(135deg, #991b1b, #7f1d1d) !important;
+}
+
+.footer p,
+.footer strong {
+    color: #fef3c7 !important;
+}
+
+.footer-bottom {
+    border-top-color: rgba(251, 191, 36, 0.3) !important;
+}
+
+/* ===== CTA BUTTONS ===== */
+.cta-btn.primary {
+    background: linear-gradient(135deg, #dc2626, #f59e0b) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4) !important;
+}
+
+.cta-btn.primary:hover {
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.5) !important;
+    transform: translateY(-3px);
+}
+
+.cta-btn.secondary {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: #fbbf24 !important;
+    color: #fef3c7 !important;
+}
+
+/* ===== FLOATING CONTACT BUTTON ===== */
+.floating-contact-btn {
+    background: linear-gradient(135deg, #dc2626, #f59e0b) !important;
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4) !important;
+}
+
+/* ===== Falling Blossoms Animation ===== */
+.tet-blossoms {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.blossom {
+    position: absolute;
+    top: -50px;
+    animation: fall linear infinite;
+    opacity: 0.9;
+}
+
+.blossom::before {
+    content: '🌸';
+    font-size: 24px;
+}
+
+.blossom:nth-child(odd)::before {
+    content: '🏵️';
+    font-size: 22px;
+}
+
+.blossom:nth-child(3n)::before {
+    content: '✨';
+    font-size: 18px;
+}
+
+.blossom:nth-child(5n)::before {
+    content: '🧧';
+    font-size: 20px;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px) rotate(0deg) translateX(0);
+        opacity: 1;
+    }
+
+    25% {
+        transform: translateY(25vh) rotate(90deg) translateX(30px);
+    }
+
+    50% {
+        transform: translateY(50vh) rotate(180deg) translateX(-30px);
+    }
+
+    75% {
+        transform: translateY(75vh) rotate(270deg) translateX(30px);
+    }
+
+    100% {
+        transform: translateY(105vh) rotate(360deg) translateX(-30px);
+        opacity: 0.4;
+    }
+}
+
+/* ===== Tet Banner ===== */
+.tet-banner {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    padding: 14px 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
+    border-bottom: 3px solid #dc2626;
+}
+
+.tet-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.tet-banner-text {
+    color: #7f1d1d;
+    font-size: 17px;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.tet-banner-emoji {
+    font-size: 22px;
+}
+
+.tet-banner-close {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(127, 29, 29, 0.2);
+    border: none;
+    color: #7f1d1d;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.tet-banner-close:hover {
+    background: rgba(127, 29, 29, 0.3);
+}
+
+/* Adjust hero section when banner is visible */
+body.tet-banner-visible .hero {
+    padding-top: 140px;
+}
+
+body.tet-banner-visible .navbar {
+    top: 0;
+}
+
+/* ===== Decorative Lanterns ===== */
+.tet-lanterns {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.lantern {
+    position: absolute;
+    top: -10px;
+    font-size: 50px;
+    animation: sway 3s ease-in-out infinite;
+    filter: drop-shadow(0 8px 15px rgba(220, 38, 38, 0.4));
+}
+
+.lantern:nth-child(1) {
+    left: 3%;
+    animation-delay: 0s;
+}
+
+.lantern:nth-child(2) {
+    right: 3%;
+    animation-delay: 0.5s;
+}
+
+.lantern:nth-child(3) {
+    left: 12%;
+    font-size: 35px;
+    animation-delay: 1s;
+}
+
+.lantern:nth-child(4) {
+    right: 12%;
+    font-size: 35px;
+    animation-delay: 1.5s;
+}
+
+@keyframes sway {
+
+    0%,
+    100% {
+        transform: rotate(-8deg);
+    }
+
+    50% {
+        transform: rotate(8deg);
+    }
+}
+
+/* ===== SOCIAL LINKS ===== */
+.contact-social-item {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #fbbf24 !important;
+}
+
+.contact-social-item span {
+    color: #7f1d1d !important;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+    .tet-banner {
+        top: 60px;
+        padding: 10px 50px 10px 15px;
+    }
+
+    .tet-banner-text {
+        font-size: 14px;
+    }
+
+    .lantern {
+        font-size: 35px;
+    }
+
+    .lantern:nth-child(3),
+    .lantern:nth-child(4) {
+        display: none;
+    }
+
+    body.tet-banner-visible .hero {
+        padding-top: 130px;
+    }
+
+    .blossom::before {
+        font-size: 18px;
+    }
+}
