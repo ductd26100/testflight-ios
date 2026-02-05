@@ -77,10 +77,10 @@ const translations = {
         'pricing.enterprise.f4': 'Bảo hành lỗi',
         'pricing.enterprise.f5': 'Giao nhanh trong ngày',
         'pricing.enterprise.cta': 'Liên hệ ngay',
-        'pricing.starter.price': '800K~1M',
-        'pricing.pro.price': '1M~1M5',
-        'pricing.enterprise.price': '500K',
-        'pricing.enterprise.period': '/IPA',
+        'pricing.starter.price': 'Liên hệ',
+        'pricing.pro.price': 'Liên hệ',
+        'pricing.enterprise.price': 'Liên hệ',
+        'pricing.enterprise.period': '',
 
         // Contact Section
         'contact.badge': 'Liên hệ',
