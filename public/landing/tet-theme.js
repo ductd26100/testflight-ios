@@ -43,7 +43,7 @@ function createTetBanner() {
     banner.innerHTML = `
         <div class="tet-banner-content">
             <span class="tet-banner-emoji">🧧</span>
-            <span class="tet-banner-text">Chúc Mừng Năm Mới 2026 - Năm Bính Tỵ 🐍</span>
+            <span class="tet-banner-text">Chúc Mừng Năm Mới 2026 - Năm Bính Ngọ 🐴</span>
             <span class="tet-banner-emoji">🧧</span>
         </div>
         <button class="tet-banner-close" onclick="closeTetBanner()" title="Đóng">×</button>
